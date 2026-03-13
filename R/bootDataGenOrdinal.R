@@ -160,7 +160,7 @@ bootDataGenOrdinal <- function(object, R = 500, bootType = c("nonparametric", "p
                                                                                     replace = TRUE))[[2]])), ]
       columns.rem <- colnames(subset(sampled.expand, select=-c(variable,row.num,value,row.orig)))
       df <- reshape2::dcast(sampled.expand, as.formula(paste(paste(columns.rem, collapse = "+")," ~ variable")), length)
-      for(j in 1:length(object$levels)){
+      for(j in seq_along(object$levels)){
         if(!(object$levels[j] %in% colnames(df))){
           df[,object$levels[j]]<-0
         }
@@ -176,7 +176,7 @@ bootDataGenOrdinal <- function(object, R = 500, bootType = c("nonparametric", "p
       p0 <- aggregate(variable ~ data.e[, "row.orig"],
                       data = data.e, FUN = function(x) table(x)/length(x))
       sampled.expand <- data.e
-      for(j in 1:length(unique(data.e$row.orig))){
+      for(j in seq_along(unique(data.e$row.orig))){
         data.size <- length(sampled.expand$variable[data.e$row.orig==j])
         prop0 <- p0[j,-1]
         prop0[prop0==0] <- (1/length(object$levels)^2)/(data.size+1/length(object$levels)) # (1/4)/(data.size + 1/2)
@@ -187,7 +187,7 @@ bootDataGenOrdinal <- function(object, R = 500, bootType = c("nonparametric", "p
       }
       columns.rem <- colnames(subset(sampled.expand, select=-c(variable,value,row.orig)))
       df <- reshape2::dcast(sampled.expand, as.formula(paste(paste(columns.rem, collapse = "+")," ~ variable")), length)
-      for(j in 1:length(object$levels)){
+      for(j in seq_along(object$levels)){
         if(!(object$levels[j] %in% colnames(df))){
           df[,object$levels[j]]<-0
         }
@@ -203,7 +203,7 @@ bootDataGenOrdinal <- function(object, R = 500, bootType = c("nonparametric", "p
       sampled.expand[, "variable"] <- sapply(data.e[,object$dose], function(x) unlist(sample(object$levels, size = 1, replace = TRUE, object$pFun(x))))
       columns.rem <- colnames(subset(sampled.expand, select=-c(variable,value,row.orig)))
       df <- reshape2::dcast(sampled.expand, as.formula(paste(paste(columns.rem, collapse = "+")," ~ variable")), length)
-      for(j in 1:length(object$levels)){
+      for(j in seq_along(object$levels)){
         if(!(object$levels[j] %in% colnames(df))){
           df[,object$levels[j]]<-0
         }

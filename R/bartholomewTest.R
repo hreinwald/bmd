@@ -54,4 +54,5 @@
   PVAL <- mean(obsL <= L)
   
   RET <- list(statistic = STATISTIC, p.value = PVAL, alternative = alternative)
+  RET
 }

@@ -270,7 +270,7 @@ bmdBoot <- function(object, bmr, R=1000, bootType="nonparametric", bmdType = "or
     #   try(drm(object$call$formula, data = x, type = object$type, weights=weights, fct = object[["fct"]]),TRUE)}
     # )
     drm.list.tmp <- get.drm.list(tmp.data)
-    list.condition <- sapply(drm.list.tmp, function(x) class(x)=="drc")
+    list.condition <- sapply(drm.list.tmp, function(x) inherits(x, "drc"))
     drm.list  <- drm.list.tmp[list.condition]
     
     # bmd.list <- lapply(drm.list,function(x){
@@ -292,7 +292,7 @@ bmdBoot <- function(object, bmr, R=1000, bootType="nonparametric", bmdType = "or
       #   try(drm(object$call$formula, data = x, fct = object[["fct"]]),TRUE)
       # })
       bootJack.drm.tmp <- get.drm.list(jackData)
-      list.condition <- sapply(bootJack.drm.tmp, function(x) class(x)=="drc")
+      list.condition <- sapply(bootJack.drm.tmp, function(x) inherits(x, "drc"))
       bootJack.drm<- bootJack.drm.tmp[list.condition]
       
       # bootJack <- sapply(bootJack.drm, function(x){
@@ -368,7 +368,7 @@ bmdBoot <- function(object, bmr, R=1000, bootType="nonparametric", bmdType = "or
       #   try(drm(as.formula(paste0("number~", as.character(object$call$formula[[3]]))), data = x, type = "binomial", fct = object[["fct"]]),TRUE) # number~dose
       # })
       bootJack.drm.tmp <- get.drm.list(jackData)
-      list.condition <- sapply(bootJack.drm.tmp, function(x) class(x)=="drc")
+      list.condition <- sapply(bootJack.drm.tmp, function(x) inherits(x, "drc"))
       bootJack.drm<- bootJack.drm.tmp[list.condition]
       
       # bootJack <- sapply(bootJack.drm, function(x){
@@ -405,7 +405,7 @@ bmdBoot <- function(object, bmr, R=1000, bootType="nonparametric", bmdType = "or
       #   try(drm(object$call$formula, data = x, type = object$type, weights=weights, fct = object[["fct"]]),TRUE)
       # })
       bootJack.drm.tmp <- get.drm.list(jackData)
-      list.condition <- sapply(bootJack.drm.tmp, function(x) class(x)=="drc")
+      list.condition <- sapply(bootJack.drm.tmp, function(x) inherits(x, "drc"))
       bootJack.drm<- bootJack.drm.tmp[list.condition]
       
       # bootJack <- sapply(bootJack.drm, function(x){

@@ -29,7 +29,7 @@ print.drcOrdinal <- function(x, ..., digits = max(3, getOption("digits") - 3))
         "This 'drcOrdinal' model is composed of the following 'drc' models:", sep="")
   }
   
-  lapply(1:length(object$drmList),
+  lapply(seq_along(object$drmList),
          function(i){
            cat("\n", object$levelsMerged[[i]], ":\n", "Coefficients:\n", sep = "")
            print.default(format(coef(object$drmList[[i]]), digits = digits), print.gap = 2, quote = FALSE)

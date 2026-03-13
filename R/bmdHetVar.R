@@ -161,7 +161,7 @@ bmdHetVar <- function(object, bmr, backgType = c("absolute", "hybridSD", "hybrid
   level <- 1-2*(1-level)
   
   # Model parameters
-  curveParInd <- 1:length(object$curvePar)
+  curveParInd <- seq_along(object$curvePar)
   sigmaParInd <- (length(object$curvePar)+1):(length(object$curvePar)+length(object$sigmaPar))
   
   # SLOPE

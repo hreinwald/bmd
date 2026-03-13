@@ -7,7 +7,7 @@ getFctDerivx <- function(object){
   
   derivx <- NULL
   # Log-logistic
-  if(identical(class(object$fct), "llogistic")){
+  if(inherits(object$fct, "llogistic")){
     if(substr(object$fct$name, 3,3) == "."){
       derivx <- function(dose, parm)  # Changed from 'x' to 'dose'
       {
@@ -40,7 +40,7 @@ getFctDerivx <- function(object){
   }
   
   # Log-Normal
-  if(identical(class(object$fct), "log-normal")){
+  if(inherits(object$fct, "log-normal")){
     derivx <- function(dose, parm)
     {
       parmMat <- matrix(parmVec, nrow(parm), numParm, byrow = TRUE)
@@ -61,7 +61,7 @@ getFctDerivx <- function(object){
   }
   
   # Weibull1
-  if(identical(class(object$fct), "Weibull-1")){
+  if(inherits(object$fct, "Weibull-1")){
     derivx <- function(dose, parm)  # Changed from 'x' to 'dose'
     {
       parmMat <- matrix(parmVec, nrow(parm), numParm, byrow = TRUE)
@@ -78,7 +78,7 @@ getFctDerivx <- function(object){
   }
   
   # Weibull2
-  if(identical(class(object$fct), "Weibull-2")){
+  if(inherits(object$fct, "Weibull-2")){
     derivx <- function(dose, parm)  # Changed from 'x' to 'dose'
     {
       parmMat <- matrix(parmVec, nrow(parm), numParm, byrow = TRUE)
@@ -94,7 +94,7 @@ getFctDerivx <- function(object){
     }
   }
   
-  if(identical(class(object$fct), "Boltzmann")){
+  if(inherits(object$fct, "Boltzmann")){
     derivx <- function(dose, parm)  # Changed from 'x' to 'dose'
     {
       parmMat <- matrix(parmVec, nrow(parm), numParm, byrow = TRUE)
@@ -107,7 +107,7 @@ getFctDerivx <- function(object){
   }
   
   # Brain-Cousens
-  if(identical(class(object$fct), "braincousens")){
+  if(inherits(object$fct, "braincousens")){
     derivx <- function(dose, parm)
     {
       parmMat <- matrix(parmVec, nrow(parm), numParm, byrow = TRUE)
@@ -121,7 +121,7 @@ getFctDerivx <- function(object){
   }
   
   
-  if(identical(class(object$fct), "fp-logistic")){
+  if(inherits(object$fct, "fp-logistic")){
     p1 <- as.numeric(unlist(strsplit(object$fct$name, split = "[,()]+"))[2])
     p2 <- as.numeric(unlist(strsplit(object$fct$name, split = "[,()]+"))[3])
     derivx <- function(dose, parm)
