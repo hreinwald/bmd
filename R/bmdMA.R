@@ -352,7 +352,7 @@ bmdMA <- function(modelList, modelWeights, bmr,
           pb <- txtProgressBar(min = 0, max = maxIter, style = 3)
         }
         
-        for(i in 1:length(bootData)){
+        for(i in seq_along(bootData)){
           bootBmdEst[i] <- bmdMAboot(bootData[[i]])
           if(progressInfo) setTxtProgressBar(pb, i)
         }
@@ -376,7 +376,7 @@ bmdMA <- function(modelList, modelWeights, bmr,
             }
             
             jackBmdEst <- numeric(length(jackData))
-            for(i in 1:length(jackData)){
+            for(i in seq_along(jackData)){
               jackBmdEst[i] <- bmdMAboot(jackData[[i]])
               if(progressInfo) setTxtProgressBar(pb, i + R)
             }
@@ -452,7 +452,7 @@ bmdMA <- function(modelList, modelWeights, bmr,
           pb <- txtProgressBar(min = 0, max = maxIter, style = 3)
         }
         
-        for(i in 1:length(bootData)){
+        for(i in seq_along(bootData)){
           bootBmdEst[i] <- bmdMACurveboot(bootData[[i]])
           if(progressInfo) setTxtProgressBar(pb, i)
         }
@@ -477,7 +477,7 @@ bmdMA <- function(modelList, modelWeights, bmr,
             
             jackBmdEst <- numeric(length(jackData))
             
-            for(i in 1:length(jackData)){
+            for(i in seq_along(jackData)){
               jackBmdEst[i] <- bmdMACurveboot(jackData[[i]])
               if(progressInfo) setTxtProgressBar(pb, i + R)
             }
@@ -560,7 +560,7 @@ bmdMA <- function(modelList, modelWeights, bmr,
           pb <- txtProgressBar(min = 0, max = maxIter, style = 3)
         }
         
-        for(i in 1:length(bootData)){
+        for(i in seq_along(bootData)){
           bootBmdEst[i] <- bmdMAboot(bootData[[i]])
           if(progressInfo) setTxtProgressBar(pb, i)
         }
@@ -596,7 +596,7 @@ bmdMA <- function(modelList, modelWeights, bmr,
             }
             
             jackBmdEst <- numeric(length(jackData))
-            for(i in 1:length(jackData)){
+            for(i in seq_along(jackData)){
               jackBmdEst[i] <- bmdMAboot(jackData[[i]])
               if(progressInfo) setTxtProgressBar(pb, i + R)
             }
@@ -672,7 +672,7 @@ bmdMA <- function(modelList, modelWeights, bmr,
           pb <- txtProgressBar(min = 0, max = maxIter, style = 3)
         }
         
-        for(i in 1:length(bootData)){
+        for(i in seq_along(bootData)){
           bootBmdEst[i] <- bmdMACurveboot(bootData[[i]])
           if(progressInfo) setTxtProgressBar(pb, i)
         }
@@ -709,7 +709,7 @@ bmdMA <- function(modelList, modelWeights, bmr,
             
             jackBmdEst <- numeric(length(jackData))
             
-            for(i in 1:length(jackData)){
+            for(i in seq_along(jackData)){
               jackBmdEst[i] <- bmdMACurveboot(jackData[[i]])
               if(progressInfo) setTxtProgressBar(pb, i + R)
             }
@@ -839,7 +839,7 @@ bmdMA <- function(modelList, modelWeights, bmr,
             pb <- txtProgressBar(min = 0, max = maxIter, style = 3)
           }
           
-          for(i in 1:length(bootData)){
+          for(i in seq_along(bootData)){
             bootBmdEst[i,] <- bmdMAboot(bootData[[i]])
             if(progressInfo) setTxtProgressBar(pb, i)
           }
@@ -864,7 +864,7 @@ bmdMA <- function(modelList, modelWeights, bmr,
               }
               
               jackBmdEst <- matrix(NA, nrow = length(jackData), ncol = nCurves)
-              for(i in 1:length(jackData)){
+              for(i in seq_along(jackData)){
                 jackBmdEst[i,] <- bmdMAboot(jackData[[i]])
                 if(progressInfo) setTxtProgressBar(pb, i + R)
               }
@@ -956,7 +956,7 @@ bmdMA <- function(modelList, modelWeights, bmr,
             pb <- txtProgressBar(min = 0, max = maxIter, style = 3)
           }
           
-          for(i in 1:length(bootData)){
+          for(i in seq_along(bootData)){
             bootBmdEst[i,] <- bmdMACurveboot(bootData[[i]])
             if(progressInfo) setTxtProgressBar(pb, i)
           }
@@ -982,7 +982,7 @@ bmdMA <- function(modelList, modelWeights, bmr,
               
               jackBmdEst <- matrix(NA, nrow = length(jackData), ncol = nCurves)
               
-              for(i in 1:length(jackData)){
+              for(i in seq_along(jackData)){
                 jackBmdEst[i,] <- bmdMACurveboot(jackData[[i]])
                 if(progressInfo) setTxtProgressBar(pb, i + R)
               }
@@ -1083,7 +1083,7 @@ bmdMA <- function(modelList, modelWeights, bmr,
             pb <- txtProgressBar(min = 0, max = maxIter, style = 3)
           }
           
-          for(i in 1:length(bootData)){
+          for(i in seq_along(bootData)){
             bootBmdEst[i,] <- bmdMAboot(bootData[[i]])
             if(progressInfo) setTxtProgressBar(pb, i)
           }
@@ -1124,7 +1124,7 @@ bmdMA <- function(modelList, modelWeights, bmr,
               }
               
               jackBmdEst <- matrix(NA, nrow = length(jackData), ncol = nCurves)
-              for(i in 1:length(jackData)){
+              for(i in seq_along(jackData)){
                 jackBmdEst[i,] <- bmdMAboot(jackData[[i]])
                 if(progressInfo) setTxtProgressBar(pb, i + R)
               }
@@ -1216,7 +1216,7 @@ bmdMA <- function(modelList, modelWeights, bmr,
             pb <- txtProgressBar(min = 0, max = maxIter, style = 3)
           }
           
-          for(i in 1:length(bootData)){
+          for(i in seq_along(bootData)){
             bootBmdEst[i,] <- bmdMACurveboot(bootData[[i]])
             if(progressInfo) setTxtProgressBar(pb, i)
           }
@@ -1258,7 +1258,7 @@ bmdMA <- function(modelList, modelWeights, bmr,
               
               jackBmdEst <- matrix(NA, nrow = length(jackData), ncol = nCurves)
               
-              for(i in 1:length(jackData)){
+              for(i in seq_along(jackData)){
                 jackBmdEst[i,] <- bmdMACurveboot(jackData[[i]])
                 if(progressInfo) setTxtProgressBar(pb, i + R)
               }
@@ -1276,7 +1276,7 @@ bmdMA <- function(modelList, modelWeights, bmr,
       }
     } else {
       # CURVES FITTED INDEPENDENTLY
-      modelListList <- lapply(1:length(modelList[[1]]$objList), function(i) lapply(modelList, function(object) object$objList[[i]]))
+      modelListList <- lapply(seq_along(modelList[[1]]$objList), function(i) lapply(modelList, function(object) object$objList[[i]]))
       
       bmdMACall <- function(modelList){
         bmdMA(modelList, modelWeights, bmr, backgType, backg, def, respTrans, 

@@ -33,7 +33,7 @@ computeWeightsFromSplit <- function(trainData, validateData, modelList){
   } else {
     predVec <- function(model, dose, curveid){
       mat <- model$curve[[1]](dose)
-      sapply(1:length(dose), 
+      sapply(seq_along(dose), 
              function(i){
                val <- mat[i, which(curveid[i] == unique(model$dataList$curveid))]
                if(is.na(val)){ val <- mean(mat[i,], na.rm = TRUE)}
@@ -94,8 +94,8 @@ getDataSplits <- function(object, nSplits){
     
     splitNum <- integer(object$sumList$lenData)
     
-    for(iCurve in 1:length(curveLevels)){
-      for(jDose in 1:length(doseLevels)){
+    for(iCurve in seq_along(curveLevels)){
+      for(jDose in seq_along(doseLevels)){
         rowNumDoseCurve <- rowNum[(object$dataList$dose == doseLevels[jDose]) & (object$dataList$curveid == curveLevels[iCurve])]
         splitsAssigned <- integer(0)
         missingVals <- length(rowNumDoseCurve)
@@ -178,8 +178,8 @@ getDataSplits <- function(object, nSplits){
     
     splitNum <- integer(nrow(df))
     
-    for(iCurve in 1:length(curveLevels)){
-      for(jDose in 1:length(doseLevels)){
+    for(iCurve in seq_along(curveLevels)){
+      for(jDose in seq_along(doseLevels)){
         rowNumDoseCurve <- rowNum[(df[[as.character(object$call$formula[[3]])]] == doseLevels[jDose]) & (df[[as.character(object$call$curveid)]] == curveLevels[iCurve])]
         splitsAssigned <- integer(0)
         missingVals <- length(rowNumDoseCurve)

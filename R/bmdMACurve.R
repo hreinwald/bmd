@@ -108,7 +108,7 @@ bmdMACurve<-function(modelList,modelWeights,bmrScaled0, searchInterval="dataBase
     f.all<-list()
     fi<-lapply(modelList,function(x){fList[[x[["fct"]][["name"]]]]$fct})
     
-    for(i in 1:length(modelList)){
+    for(i in seq_along(modelList)){
       if(!identical(modelList[[i]]$fct$text,"Fractional polynomial")){
       if(length(modelList[[i]]$fct$fixed)==5){
         parm<-modelList[[i]]$fct$fixed

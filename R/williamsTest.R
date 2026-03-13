@@ -41,7 +41,7 @@
   if (alternative == "less") {
     x <- -x
   }
-  xi <- tapply(x, g, mean, na.rm = T)
+  xi <- tapply(x, g, mean, na.rm = TRUE)
   ni <- tapply(x, g, length)
   k <- nlevels(g)
   kk <- k - 1

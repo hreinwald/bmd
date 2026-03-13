@@ -163,7 +163,7 @@ qplotDrc <- function(x, add = FALSE, level = NULL, type = c("average", "all", "b
     
     respNorm <- mapply(normalizeLU, respList, 
                        as.list(as.data.frame(getLU(object)))[names(respList)], 
-                       normRef = normRef, SIMPLIFY = F)
+                       normRef = normRef, SIMPLIFY = FALSE)
     
     resp <- do.call(c, unname(respNorm))[as.character(seq(length(resp)))]
   }
@@ -278,7 +278,7 @@ qplotDrc <- function(x, add = FALSE, level = NULL, type = c("average", "all", "b
       predictMatListNorm <- mapply(normalizeLU, predictList,
                                    as.list(as.data.frame(getLU(object))),
                                    normRef = normRef,
-                                   SIMPLIFY = F)
+                                   SIMPLIFY = FALSE)
       predictMatNorm <- do.call(c, unname(predictMatListNorm))[as.character(seq(length(predictMat)))]
       predictMat<- matrix(predictMatNorm, ncol = 2)
     }
@@ -407,5 +407,5 @@ qplotDrc <- function(x, add = FALSE, level = NULL, type = c("average", "all", "b
 
 getLU <- function(object){
   ## using the drc internal function
-  eval(parse(text = "drc:::getLU(object))"))
+  eval(parse(text = "drc:::getLU(object)"))
 }

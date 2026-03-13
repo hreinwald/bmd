@@ -40,7 +40,7 @@ plot.drcOrdinal <- function(x, ...){
   
   plot <- ggplot2::ggplot(plotData) +
     ggplot2::geom_col(aes(x = dose, y = prop, fill = cat), alpha = 0.5) +
-    ggplot2::scale_fill_manual(breaks = object$levels, values = col_pal[1:length(object$levels)]) +
+    ggplot2::scale_fill_manual(breaks = object$levels, values = col_pal[seq_along(object$levels)]) +
     lapply(object$levelsMerged, 
            function(levelsMerged){ 
              ggplot2::geom_function(aes(col = levelsMerged), fun = object$drmList[[levelsMerged]]$curve[[1]], data = data.frame(levelsMerged = levelsMerged))}) +

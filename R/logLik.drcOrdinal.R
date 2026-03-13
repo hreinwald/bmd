@@ -14,7 +14,7 @@ logLik.drcOrdinal <- function(object, ...){
   } else {
     epsilon <- 1e-16
   }
-  tmp <- sapply(1:length(object$levels), function(cat.i){
+  tmp <- sapply(seq_along(object$levels), function(cat.i){
     cat <- object$levels[[cat.i]]
     cat.per.dose <- unlist(object$drmList[[1]]$origData[,cat])
     if(cat.i == 1){

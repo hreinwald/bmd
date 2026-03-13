@@ -1,5 +1,5 @@
 bmd.edfct <- function(object){
-  if(class(object$fct) %in% c("llogistic", "log-normal", "Weibull-1", "Weibull-2", "Boltzmann", "braincousens", "fp-logistic")){
+  if(inherits(object$fct, c("llogistic", "log-normal", "Weibull-1", "Weibull-2", "Boltzmann", "braincousens", "fp-logistic"))){
     ## Handling 'fixed' argument
     numParm <- length(object$fct$fixed)
     notFixed <- is.na(object$fct$fixed)
@@ -7,7 +7,7 @@ bmd.edfct <- function(object){
     parmVec[!notFixed] <- object$fct$fixed[!notFixed]
     
     # Log-logistic
-    if(identical(class(object$fct), "llogistic")){
+    if(inherits(object$fct, "llogistic")){
       if(substr(object$fct$name, 3,3) == "."){
         edfct <- function(parm, respl, reference, type, lower = 1e-3, upper = 10000, loged = FALSE, ...)
         {
@@ -57,7 +57,7 @@ bmd.edfct <- function(object){
     }
     
     # Log-Normal
-    if(identical(class(object$fct), "log-normal")){
+    if(inherits(object$fct, "log-normal")){
       edfct <- function(parm, respl, reference, type, lower = 1e-3, upper = 10000, loged = FALSE, ...)
       {
         parmVec[notFixed] <- parm
@@ -101,7 +101,7 @@ bmd.edfct <- function(object){
     }
     
     # Weibull1
-    if(identical(class(object$fct), "Weibull-1")){
+    if(inherits(object$fct, "Weibull-1")){
       edfct <- function(parm, respl, reference, type, lower = 1e-3, upper = 10000, loged = FALSE, ...)  # function(parm, p, reference, type, ...)
       {        
         parmVec[notFixed] <- parm
@@ -123,7 +123,7 @@ bmd.edfct <- function(object){
     }
     
     # Weibull2
-    if(identical(class(object$fct), "Weibull-2")){
+    if(inherits(object$fct, "Weibull-2")){
       edfct <- function(parm, respl, reference, type, lower = 1e-3, upper = 10000, loged = FALSE, ...)
       {   
         parmVec[notFixed] <- parm
@@ -142,15 +142,15 @@ bmd.edfct <- function(object){
         
         if(identical(type, "absolute")){
           tempVal2 <- p/100
-          EDder[2:3] <- c(EDp * tempVal2/(parm[1] * tempVal2 * (parm[3]-parm[2]) * log(tempVal2)),
-                          EDp * (1-tempVal2)/ (parm[1] * (parm[3]-parm[2]) * tempVal2 * log(tempVal2)) )
+          EDder[2:3] <- c(EDp * tempVal2/(parmVec[1] * tempVal2 * (parmVec[3]-parmVec[2]) * log(tempVal2)),
+                          EDp * (1-tempVal2)/ (parmVec[1] * (parmVec[3]-parmVec[2]) * tempVal2 * log(tempVal2)) )
         }
         
         return(list(EDp, EDder[notFixed]))
       }
     }
     
-    if(identical(class(object$fct), "Boltzmann")){
+    if(inherits(object$fct, "Boltzmann")){
       edfct <- function(parm, respl, reference, type, lower = 1e-3, upper = 10000, loged = FALSE, ...)
       {
         parmVec[notFixed] <- parm
@@ -194,7 +194,7 @@ bmd.edfct <- function(object){
       }
     }
     
-    if(identical(class(object$fct), "braincousens")){
+    if(inherits(object$fct, "braincousens")){
       edfct <- function(parm, respl, reference, type, lower = 1e-3, upper = 10000, loged = FALSE, ...)
       {
         #        if (is.missing(upper)) {upper <- 1000}
@@ -249,7 +249,7 @@ bmd.edfct <- function(object){
       }
     }
     
-    if(identical(class(object$fct), "fp-logistic")){
+    if(inherits(object$fct, "fp-logistic")){
       if(!requireNamespace("numDeriv")){
         stop('package "numDeriv" must be installed to use FPL models')
       }

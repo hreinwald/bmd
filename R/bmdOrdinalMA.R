@@ -186,7 +186,7 @@ bmdOrdinalMA <- function(modelList, modelWeights = c("AIC", "BIC"), bmr, backgTy
       pb <- txtProgressBar(min = 0, max = R, style = 3)
     }
     
-    for(i in 1:length(bootData)){
+    for(i in seq_along(bootData)){
       bootBmdEst[i,] <- bmdMAboot(bootData[[i]])
       if(progressInfo) setTxtProgressBar(pb, i)
     }
