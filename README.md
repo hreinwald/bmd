@@ -2,12 +2,18 @@
 
 # bmd
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/hreinwald/bmd/actions/workflows/r.yml/badge.svg)](https://github.com/hreinwald/bmd/actions/workflows/r.yml)
+<!-- badges: end -->
+
 This is an R package for benchmark dose (BMD) estimation, which expands
 upon the functionality of the drc package.
 
 This package is currently maintained by Jens Riis Baalkilde and Signe
 Marie Jensen, Department of Plant and Environmental Sciences, University
 of Copenhagen.
+
+Authors: Signe M. Jensen, Christian Ritz and Jens Riis Baalkilde.
 
 ## Installation
 
@@ -18,8 +24,11 @@ drc package installed from GitHub as well.
 install.packages("devtools")
 devtools::install_github("DoseResponse/drcData")
 devtools::install_github("DoseResponse/drc")
-devtools::install_github("DoseResponse/bmd")
+devtools::install_github("hreinwald/bmd")
 ```
+
+**Requirements:** R (>= 3.5). The package imports `drc`, `ggplot2`,
+`dplyr` and `stats`.
 
 ## Key features
 
@@ -32,7 +41,65 @@ of the bmd package includes:
     Profile and Bootstrap intervals.
   - BMD estimation based on model averaging.
   - BMD estimation for multiple dose-response curves.
+- Specialized model fitting for heterogeneous variance, ordinal and
+  meta-analytic dose-response data.
+- Isotonic regression-based BMD estimation.
+- Statistical tests for trend and monotonicity (Williams, Shirley,
+  Jonckheere, Bartholomew).
 - Utility functions for plotting dose-response curves and BMD estimates.
+
+## Exported functions
+
+### Core BMD estimation
+
+| Function | Description |
+|---|---|
+| `bmd()` | BMD estimation for dose-response models fitted by `drc::drm()` |
+| `bmdBoot()` | Bootstrap-based BMD with confidence intervals |
+| `bmdMA()` | Model-averaged BMD estimation |
+| `bmdMACurve()` | Model-averaged BMD curve helper |
+
+### Specialized BMD estimation
+
+| Function | Description |
+|---|---|
+| `bmdOrdinal()` | BMD for ordinal dose-response data |
+| `bmdOrdinalMA()` | Model-averaged BMD for ordinal data |
+| `bmdHetVar()` | BMD for models with heterogeneous variance |
+| `bmdHetVarMA()` | Model-averaged BMD with heterogeneous variance |
+| `bmdIso()` | BMD based on isotonic regression |
+| `bmdIsoBoot()` | Bootstrap BMD based on isotonic regression |
+
+### Dose-response model fitting
+
+| Function | Description |
+|---|---|
+| `drmHetVar()` | Fit dose-response models with heterogeneous variance |
+| `drmOrdinal()` | Fit ordinal dose-response models |
+| `drmMMRE()` | Fit meta-analytic random-effects dose-response models |
+
+### Plotting
+
+| Function | Description |
+|---|---|
+| `qplotDrc()` | Plot dose-response curves using ggplot2 |
+| `qplotBmd()` | Plot BMD estimates with confidence intervals |
+
+### Statistical tests
+
+| Function | Description |
+|---|---|
+| `trendTest()` | Trend tests (Williams, Shirley, Tukey) |
+| `monotonicityTest()` | Monotonicity tests (Jonckheere, Bartholomew, Williams) |
+
+### Utilities
+
+| Function | Description |
+|---|---|
+| `BCa()` | Bias-corrected and accelerated bootstrap intervals |
+| `PAV()` | Pool-Adjacent-Violators algorithm (isotonic regression) |
+| `MACurve()` | Model-averaged curve computation |
+| `getStackingWeights()` | Compute stacking weights for model averaging |
 
 ## Example usage
 
@@ -285,3 +352,44 @@ qplotBmd(bmd(acute.inh.LL.2, bmr = 0.1, backgType = "modelBased", def = "additio
     ## Adding another scale for x, which will replace the existing scale.
 
 ![](README_files/figure-gfm/acute.inh_bmd_plot-1.png)<!-- -->
+
+## Vignettes
+
+The package includes detailed vignettes covering all major features.
+After installation, browse them with:
+
+``` r
+browseVignettes("bmd")
+```
+
+Available vignettes:
+
+- **bmd Package** — Overview of BMD concepts and core functionality
+- **Basic BMD Functions** — Usage examples for `bmd()` and related
+  functions
+- **Model Averaging** — Guide to `bmdMA()` and model-averaged BMD
+  estimation
+- **Specialized Models** — Ordinal, heterogeneous variance and
+  meta-analytic models
+- **Visualization** — Plotting with `qplotDrc()`, `qplotBmd()` and
+  `plot.bmd()`
+- **Utilities** — Helper functions (`PAV()`, `BCa()`,
+  `expandBinomial()`, `bootDataGen()`)
+- **Statistical Tests** — Trend and monotonicity tests
+  (`trendTest()`, `monotonicityTest()`)
+
+## Citation
+
+If you use the `bmd` package in your work, please cite:
+
+> Jensen, S. M., Kluxen, F. M., Streibig, J. C., Cedergreen, N., &
+> Ritz, C. (2020). bmd: an R package for benchmark dose estimation.
+> *PeerJ*, 8, e10557.
+
+``` r
+citation("bmd")
+```
+
+## License
+
+GPL-3. See the `LICENSE` file for details.
